@@ -1,4 +1,4 @@
-import Index from './1_jsx编译'
+import Index from './基础篇/1_jsx编译'
 
 import './App.css'
 

@@ -42,10 +42,25 @@ export default function Index() {
     console.log(children, 'children')
     
     const flatChildren = React.Children.toArray(children)
+    
+    const newChildren = [];
 
-    console.log('flatChildren', flatChildren)
+    // React.Children.forEach = React.Children.toArray + Array.prototype.forEach
+    React.Children.forEach(flatChildren, (child) => {
+      if(React.isValidElement(child)) {
+        newChildren.push(child);
+      }
+    })
 
-    return reactElement;
+    newChildren.push(React.createElement('div', {}, '插在最后一位，我是飞鱼儿~'));
+
+    
+    const resElement = React.cloneElement(reactElement, {}, newChildren);
+
+    // 此处只读，不可以直接修改
+    // reactElement.props.children = newChildren;
+
+    return resElement;
   }
   return controlRender()
 }
